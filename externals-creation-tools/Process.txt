@@ -1,0 +1,2 @@
+python MakeIDList.py ../external.c #Updates the list of IDs based on the external.c coding query (does not affect letters)
+python UpdateDB.py ../Eng_Db.txt $/All Corpus .refs or .psds #Calculates the type/word/char values for all of the files

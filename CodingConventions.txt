@@ -1,0 +1,31 @@
+Taken from Beatrice Santorini:
+
+Uppercase letters indicate genres that are probably formal; lowercase letters ones that are probably informal. See notes for unclear cases.
+This category was introduced as a proxy for closeness to/distance from the vernacular. We retain it even though it is not a very good proxy.
+
+Symbol	Explanation	Notes
+A	autobiography	
+B	biography	
+C	science	
+CH	charters and wills
+D	diary, private	Not clear whether formal or informal.
+E	educational treatise	
+F	fiction	
+G	religious treatise	
+H	handbook	
+I	history	
+L	letter, nonprivate	
+M	medicine
+N	canon law	
+O	homily	
+P	philosophy	The texts in this category are translations from the Latin, so they might be unduly influenced by the Latin original.
+R	sermon	
+T	travelogue	
+U	religious rule	
+W	Bible	Wycliffe's and Tyndale's translations. Representative of the usage of their time.
+X	statute	Omit, as the language becomes increasingly archaic.
+Y	King James bible and later translations	Omit, since these translations closely following Tyndale and are hence not representative of the usage of their time.
+Z	Elizabeth's translation of Boethius	Omit, as the translation tends to be gibberish.
+c	comedy	
+l	letter, private	Not clear whether formal or informal.
+t	trials	Transcriptions of trial proceedings, therefore possibly closer to vernacular usage than other written sources.
