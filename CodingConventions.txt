@@ -29,3 +29,4 @@ Z	Elizabeth's translation of Boethius	Omit, as the translation tends to be gibbe
 c	comedy	
 l	letter, private	Not clear whether formal or informal.
 t	trials	Transcriptions of trial proceedings, therefore possibly closer to vernacular usage than other written sources.
+d	drama
