@@ -1,25 +1,42 @@
 import string
 import sys
+from progressbar import *
 db = {}
 infile = open('Eng_Db.txt')
 lines = infile.readlines()
 infile.close()
 cnames = lines[0].rstrip().split(':')[1].split(',')
 for line in lines[1:]:
-	db[line.split(':')[0]] = line.split(':')[1]
+	db[line.split(':')[0]] = line.split(':')[1].split(',')
 llist = []
 for arg in sys.argv:
 	if arg[-3:] == 'ooo':
 		infile = open(arg)
 		lines = infile.readlines()
 		infile.close()
-		for line in lines:
+		widgets = ['Lines: ', Percentage(), ' ', Bar(marker=RotatingMarker()),
+                   ' ', ETA(), ' ']
+		pbar = ProgressBar(widgets=widgets, maxval=len(lines)+1).start()
+		for i in range(len(lines)):
+			line = lines[i]
 			newline = line.rstrip().split(':')
-			if newline[1] != 'x':
-				a_line = ['_'.join(newline[:2])] + newline[2:]
+			if newline[0] != 'x':
+				for key in db.keys():
+					if '_' not in key:
+						continue
+					else:
+						text = key.split('_')[0]
+						letnum = key.split('_')[1]
+						if text in newline[-1] and newline[0] == letnum:
+							a_line = [letnum+'_'+newline[-1].lstrip('_@')]+db[key] + newline[1:-1]
+							break
 			else:
-				a_line = [newline[0]] + newline[2:]
+				for key in db.keys():
+					if '_' not in key and key in newline[-1]:			
+						a_line = [newline[-1].lstrip('_@')]+db[key] + newline[1:-1]
 			llist.append(a_line)
+			pbar.update(i)
+		pbar.finish()
 		null = []
 		for i in range(len(llist[0])):
 			null.append(0)
@@ -29,14 +46,13 @@ for arg in sys.argv:
 					null[i] = 1
 		newlines = []
 		for list in llist:
-			string = str(str(list[0])+','+db[list[0]]).rstrip()
-			for i in range(len(list[1:])):
+			string = list[0]
+			for i in range(len(list)-1):
 				if null[i+1] != 0:
-					string = string + ',' + list[i+1]
+					string = string + '\t' + list[i+1].rstrip('\n')
 			newlines.append(string + '\n')
-		outfile = open(arg.split('.')[0]+'.csv','w')
-		outfile.write('Text'+','+','.join(cnames)+'\n')	
+		outfile = open('.'.join(arg.split('.')[:-2])+'.tsv','w')
+		outfile.write('ID'+'\t'+'\t'.join(cnames)+'\n')	
 		for line in newlines:
-			print line
 			outfile.write(line)
 		outfile.close()
