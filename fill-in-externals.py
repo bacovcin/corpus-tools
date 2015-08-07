@@ -19,7 +19,8 @@ for arg in sys.argv:
 		pbar = ProgressBar(widgets=widgets, maxval=len(lines)+1).start()
 		for i in range(len(lines)):
 			line = lines[i]
-			newline = line.rstrip().split(':')
+			idsplit = line.rstrip().split('@')
+			newline = idsplit[0].split(':')+[idsplit[1]]
 			if newline[0] != 'x':
 				for key in db.keys():
 					if '_' not in key:
@@ -28,12 +29,12 @@ for arg in sys.argv:
 						text = key.split('_')[0]
 						letnum = key.split('_')[1]
 						if text in newline[-1] and newline[0] == letnum:
-							a_line = [letnum+'_'+newline[-1].lstrip('_@')]+db[key] + newline[1:-1]
+							a_line = [letnum+'_'+newline[-1],key]+db[key] + newline[1:-1]
 							break
 			else:
 				for key in db.keys():
 					if '_' not in key and key in newline[-1]:			
-						a_line = [newline[-1].lstrip('_@')]+db[key] + newline[1:-1]
+						a_line = [newline[-1],key]+db[key] + newline[1:-1]
 			llist.append(a_line)
 			pbar.update(i)
 		pbar.finish()
@@ -52,7 +53,7 @@ for arg in sys.argv:
 					string = string + '\t' + list[i+1].rstrip('\n')
 			newlines.append(string + '\n')
 		outfile = open('.'.join(arg.split('.')[:-2])+'.tsv','w')
-		outfile.write('ID'+'\t'+'\t'.join(cnames)+'\n')	
+		outfile.write('ID'+'\t'+'Text'+'\t'+'\t'.join(cnames)+'\n')	
 		for line in newlines:
 			outfile.write(line)
 		outfile.close()
