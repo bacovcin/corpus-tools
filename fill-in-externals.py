@@ -1,6 +1,14 @@
 import string
 import sys
 from progressbar import *
+
+def RepresentsInt(s):
+	try: 
+		int(s)
+		return True
+        except ValueError:
+	        return False
+
 db = {}
 infile = open('Eng_Db.txt')
 lines = infile.readlines()
@@ -20,6 +28,8 @@ for arg in sys.argv:
 		for i in range(len(lines)):
 			line = lines[i]
 			newline = line.rstrip().split(':')
+			if RepresentsInt(newline[-1][0]):
+				newline = newline[:-2] + [newline[-2]+':'+newline[-1]]
 			if newline[0] != 'x':
 				for key in db.keys():
 					if '_' not in key:
@@ -34,8 +44,12 @@ for arg in sys.argv:
 				for key in db.keys():
 					if '_' not in key and key in newline[-1]:			
 						a_line = [newline[-1].lstrip('_@')]+db[key] + newline[1:-1]
-			llist.append(a_line)
-			pbar.update(i)
+			try:
+				llist.append(a_line)
+				pbar.update(i)
+			except:
+				pbar.update(i)
+				continue
 		pbar.finish()
 		null = []
 		for i in range(len(llist[0])):
