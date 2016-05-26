@@ -26,3 +26,15 @@ This python script runs through a lexicon file and will return a new file which 
 Usage: python RemoveDup.py *.out
 
 Running this python script will eliminate any duplicate tokens (i.e. tokens with exactly the same surface content).  This can be used to eliminate duplicate texts amoung the corpora (e.g. between the PPCEME and the PCEEC), as well as only counting formulaic phrase, common in letters, once.  Can only be run on the output of a CorpusSearch query.
+
+*** dummy.q ***
+
+Returns all of the tokens (that have IPs). Useful to create a .out file to run RemoveDup.py on.
+
+*** add-cp.q ***
+
+Adds a CP level around all IPs so that coding queries can target the CP level and still cover matrix IPs.
+
+*** remove-dup-cp.q ***
+
+Should be run after add-cp.q to remove duplicate CP levels created around IPs that already had a CP level above them.
