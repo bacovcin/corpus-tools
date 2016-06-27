@@ -3,6 +3,14 @@ corpus-tools
 
 A set of tools used for working on Penn Treebank style parsed corpora
 
+*** count-words.py ***
+
+Usage: python count-words.py [Target label] [Coding slot] [CorpusSearch coding query output]
+
+This python script runs on the output of a CorpusSearch coding query and counts the number of terminal nodes under the larget label(s) (multiple labels can be joined with the :, e.g., NP-SBJ:NP-OB1). This assumes that you are coding CPs and want to target elements in the coding strings sister IP. Other configurations will presumably produce weird results. The coding slot says which column of the coding query to replace with the count (following CorpusSearch practice the column numbers start with 1).
+
+Output: a file concatenating the original query name and the target labels
+
 *** only-coding.q from Beatrice Santorini
 
 This CS query file prints only the coding string, giving a .cod.ooo file
