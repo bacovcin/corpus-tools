@@ -3,6 +3,15 @@ corpus-tools
 
 A set of tools used for working on Penn Treebank style parsed corpora
 
+*** count-wordsi-deep.py ***
+
+Usage: python count-words-deep.py [Target label] [Coding slot] [CorpusSearch coding query output]
+
+This python script runs on the output of a CorpusSearch coding query in the deep format and counts the number of ortho nodes under the larget label(s) (multiple labels can be joined with the :, e.g., NP-SBJ:NP-OB1). This assumes that you are coding CPs and want to target elements in the coding strings sister IP. Other configurations will presumably produce weird results. The coding slot says which column of the coding query to replace with the count (following CorpusSearch practice the column numbers start with 1).
+
+Output: a file concatenating the original query name and the target labels
+
+
 *** count-words.py ***
 
 Usage: python count-words.py [Target label] [Coding slot] [CorpusSearch coding query output]
